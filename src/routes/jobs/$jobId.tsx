@@ -19,6 +19,7 @@ function JobDetail() {
   }
 
   const [form, setForm] = useState({ nama: '', pesan: '' })
+  const [jawaban, setJawaban] = useState<Record<string, string>>({})
   const [submitted, setSubmitted] = useState(false)
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
@@ -26,6 +27,7 @@ function JobDetail() {
     await submitLamaran({
       data: {
         ...form,
+        jawaban,
         jobId: job.id,
         jobTitle: job.title,
         waktu: new Date().toISOString(),
@@ -141,6 +143,42 @@ function JobDetail() {
                   className="w-full rounded-md border border-input bg-background px-3 py-2 text-sm outline-none focus:border-ring focus:ring-3 focus:ring-ring/50"
                 />
               </div>
+
+              {job.assessment && job.assessment.length > 0 && (
+                <div className="space-y-4 rounded-lg border bg-secondary/30 p-4">
+                  <div>
+                    <h3 className="font-semibold">Tugas Analisis</h3>
+                    <p className="mt-1 text-sm text-muted-foreground">
+                      Jawab singkat dan jelas. Jawabanmu dinilai berdasarkan kompetensi
+                      yang dicari untuk posisi ini.
+                    </p>
+                  </div>
+                  {job.assessment.map((soal, i) => (
+                    <div key={i}>
+                      <label
+                        htmlFor={`jawaban-${i}`}
+                        className="mb-1.5 block text-sm font-medium"
+                      >
+                        {i + 1}. {soal.pertanyaan}
+                        <span className="mt-0.5 block text-xs font-normal text-muted-foreground">
+                          {soal.kompetensi} · maks {soal.maks_kata} kata
+                        </span>
+                      </label>
+                      <textarea
+                        id={`jawaban-${i}`}
+                        rows={4}
+                        required
+                        value={jawaban[i] ?? ''}
+                        onChange={(e) =>
+                          setJawaban((prev) => ({ ...prev, [String(i)]: e.target.value }))
+                        }
+                        className="w-full rounded-md border border-input bg-background px-3 py-2 text-sm outline-none focus:border-ring focus:ring-3 focus:ring-ring/50"
+                      />
+                    </div>
+                  ))}
+                </div>
+              )}
+
               <div>
                 <button type="submit" className={buttonVariants({ size: 'lg' })}>
                   Kirim Lamaran

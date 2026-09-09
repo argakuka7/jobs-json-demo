@@ -6,6 +6,7 @@ export type Lamaran = {
   jobId: string
   jobTitle: string
   waktu: string
+  jawaban: Record<string, string>
 }
 
 const URL = process.env.UPSTASH_REDIS_REST_URL!

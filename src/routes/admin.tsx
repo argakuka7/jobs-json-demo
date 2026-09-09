@@ -4,7 +4,7 @@ import { useState } from 'react'
 
 import { buttonVariants } from '@/components/ui/button'
 import { getLamaran, verifyAdmin } from '@/lib/lamaran-server'
-import { company } from '@/lib/jobs'
+import { company, getJob } from '@/lib/jobs'
 
 export const Route = createFileRoute('/admin')({
   component: Admin,
@@ -99,29 +99,43 @@ function Admin() {
             <p>Belum ada lamaran. Form di halaman detail lowongan akan mengirim data ke sini.</p>
           </div>
         ) : (
-          <div className="mt-8 overflow-x-auto rounded-xl border">
-            <table className="w-full text-left text-sm">
-              <thead className="border-b bg-secondary/50 text-xs uppercase tracking-wide text-muted-foreground">
-                <tr>
-                  <th className="px-4 py-3 font-medium">Nama</th>
-                  <th className="px-4 py-3 font-medium">Lowongan</th>
-                  <th className="px-4 py-3 font-medium">Waktu</th>
-                  <th className="px-4 py-3 font-medium">Pesan</th>
-                </tr>
-              </thead>
-              <tbody className="divide-y">
-                {lamaran.map((item, i) => (
-                  <tr key={i} className="align-top">
-                    <td className="px-4 py-3 font-medium">{item.nama}</td>
-                    <td className="px-4 py-3">{item.jobTitle}</td>
-                    <td className="px-4 py-3 whitespace-nowrap text-muted-foreground">
-                      {new Date(item.waktu).toLocaleString('id-ID')}
-                    </td>
-                    <td className="max-w-xs px-4 py-3 text-muted-foreground">{item.pesan}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
+          <div className="mt-8 space-y-4">
+            {lamaran.map((item, i) => {
+              const job = getJob(item.jobId)
+              return (
+                <div key={i} className="rounded-xl border bg-card p-6">
+                  <div className="flex flex-wrap items-baseline justify-between gap-2">
+                    <h2 className="text-lg font-bold">{item.nama}</h2>
+                    <span className="text-sm text-muted-foreground">
+                      {item.jobTitle} · {new Date(item.waktu).toLocaleString('id-ID')}
+                    </span>
+                  </div>
+                  <p className="mt-3 text-sm text-muted-foreground">
+                    <span className="font-medium text-foreground">Kenapa cocok: </span>
+                    {item.pesan}
+                  </p>
+
+                  {job?.assessment && job.assessment.length > 0 && (
+                    <div className="mt-4 space-y-3 border-t pt-4">
+                      <p className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">
+                        Jawaban Tugas Analisis
+                      </p>
+                      {job.assessment.map((soal, j) => (
+                        <div key={j} className="rounded-lg bg-secondary/40 p-4">
+                          <p className="text-sm font-medium">
+                            {j + 1}. {soal.pertanyaan}
+                          </p>
+                          <p className="mt-1 text-xs text-muted-foreground">{soal.kompetensi}</p>
+                          <p className="mt-2 whitespace-pre-wrap text-sm">
+                            {item.jawaban?.[String(j)] || <em className="text-muted-foreground">Tidak dijawab</em>}
+                          </p>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              )
+            })}
           </div>
         )}
       </main>

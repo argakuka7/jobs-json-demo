@@ -25,6 +25,23 @@
         "Kemampuan analisis data dan menulis yang baik",
         "Familiar dengan tools AI untuk mempercepat analisis (nilai plus)",
         "Fresh graduate dipersilakan"
+      ],
+      "assessment": [
+        {
+          "pertanyaan": "Sebuah dinas menaikkan retribusi pasar 40%. Data penerimaan 3 tahun terakhir stagnan. Sebagai analis, apa langkah pertamamu dan data apa yang kamu butuhkan untuk menilai kebijakan ini?",
+          "kompetensi": "Analisis data & kebijakan",
+          "maks_kata": 300
+        },
+        {
+          "pertanyaan": "Dua peraturan daerah saling bertentangan soal kewenangan pengelolaan sampah. Bagaimana kamu mendekati masalah ini dan apa output yang akan kamu hasilkan?",
+          "kompetensi": "Sintesis regulasi",
+          "maks_kata": 250
+        },
+        {
+          "pertanyaan": "Jelaskan satu kebijakan publik yang menurutmu gagal. Kenapa gagal, dan apa ukuran keberhasilan yang seharusnya dipakai?",
+          "kompetensi": "Penalaran & komunikasi kebijakan",
+          "maks_kata": 250
+        }
       ]
     },
     {
