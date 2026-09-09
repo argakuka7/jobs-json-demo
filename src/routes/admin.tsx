@@ -1,19 +1,73 @@
 import { createFileRoute, Link } from '@tanstack/react-router'
-import { ArrowLeft, Inbox } from 'lucide-react'
+import { ArrowLeft, Inbox, Lock } from 'lucide-react'
+import { useState } from 'react'
 
-import { getLamaran } from '@/lib/lamaran-server'
+import { buttonVariants } from '@/components/ui/button'
+import { getLamaran, verifyAdmin } from '@/lib/lamaran-server'
 import { company } from '@/lib/jobs'
 
 export const Route = createFileRoute('/admin')({
   component: Admin,
-  loader: async () => {
-    const lamaran = await getLamaran()
-    return { lamaran }
-  },
 })
 
 function Admin() {
-  const { lamaran } = Route.useLoaderData()
+  const [status, setStatus] = useState<'locked' | 'checking' | 'unlocked' | 'denied'>('locked')
+  const [password, setPassword] = useState('')
+  const [lamaran, setLamaran] = useState<Awaited<ReturnType<typeof getLamaran>>>([])
+
+  const attemptLogin = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault()
+    setStatus('checking')
+    const { ok } = await verifyAdmin({ data: password })
+    if (!ok) {
+      setStatus('denied')
+      return
+    }
+    setLamaran(await getLamaran())
+    setStatus('unlocked')
+  }
+
+  if (status !== 'unlocked') {
+    return (
+      <div className="flex min-h-screen items-center justify-center bg-background px-6">
+        <div className="w-full max-w-sm">
+          <Link
+            to="/"
+            className="mb-8 inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground"
+          >
+            <ArrowLeft className="h-4 w-4" /> Kembali
+          </Link>
+          <div className="rounded-xl border bg-card p-6 shadow-sm">
+            <div className="flex items-center gap-3">
+              <span className="flex h-10 w-10 items-center justify-center rounded-lg bg-secondary">
+                <Lock className="h-5 w-5" />
+              </span>
+              <div>
+                <h1 className="font-bold">Admin {company.name}</h1>
+                <p className="text-sm text-muted-foreground">Masukkan password</p>
+              </div>
+            </div>
+            <form onSubmit={attemptLogin} className="mt-6 space-y-4">
+              <input
+                type="password"
+                required
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                placeholder="Password"
+                className="w-full rounded-md border border-input bg-background px-3 py-2 text-sm outline-none focus:border-ring focus:ring-3 focus:ring-ring/50"
+              />
+              {status === 'denied' && (
+                <p className="text-sm text-destructive">Password salah. Coba lagi.</p>
+              )}
+              <button type="submit" className={`${buttonVariants()} w-full`} disabled={status === 'checking'}>
+                {status === 'checking' ? 'Memeriksa...' : 'Masuk'}
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    )
+  }
 
   return (
     <div className="min-h-screen bg-background">

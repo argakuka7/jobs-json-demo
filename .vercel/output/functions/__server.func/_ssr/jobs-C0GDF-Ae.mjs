@@ -1,0 +1,106 @@
+//#region node_modules/.nitro/vite/services/ssr/assets/jobs-C0GDF-Ae.js
+var jobs_default = {
+	company: {
+		"name": "Nusantara Policy Lab",
+		"tagline": "Riset kebijakan publik yang berdampak",
+		"email": "hr@nusantarapolicylab.id",
+		"location": "Jakarta, Indonesia"
+	},
+	jobs: [
+		{
+			"id": "analis-kebijakan-publik",
+			"title": "Analis Kebijakan Publik",
+			"department": "Riset",
+			"type": "Full-time",
+			"location": "Hybrid · Jakarta",
+			"salary": "Rp 8–12 juta/bulan",
+			"deadline": "31 Oktober 2026",
+			"summary": "Ubah data dan regulasi menjadi rekomendasi kebijakan yang jelas untuk pemerintah daerah dan mitra internasional.",
+			"responsibilities": [
+				"Menganalisis data dan regulasi untuk menyusun rekomendasi kebijakan",
+				"Menulis policy brief dan laporan riset untuk pemangku kepentingan",
+				"Berkoordinasi dengan tim riset dan mitra pemerintah daerah",
+				"Menyajikan temuan riset dalam forum internal dan eksternal"
+			],
+			"requirements": [
+				"S1 di bidang kebijakan publik, ekonomi, hukum, atau ilmu sosial",
+				"Kemampuan analisis data dan menulis yang baik",
+				"Familiar dengan tools AI untuk mempercepat analisis (nilai plus)",
+				"Fresh graduate dipersilakan"
+			]
+		},
+		{
+			"id": "riset-data-analis",
+			"title": "Riset Data Analis",
+			"department": "Data",
+			"type": "Full-time",
+			"location": "Remote",
+			"salary": "Rp 7–10 juta/bulan",
+			"deadline": "15 November 2026",
+			"summary": "Kelola data kebijakan publik, bangun dashboard, dan dukung tim riset dengan insight berbasis data.",
+			"responsibilities": [
+				"Membersihkan dan mengolah data dari berbagai sumber",
+				"Membangun dashboard dan visualisasi data",
+				"Mendukung analis kebijakan dengan data yang akurat",
+				"Mengotomasi alur pengolahan data dengan AI"
+			],
+			"requirements": [
+				"S1 statistik, data science, atau bidang terkait",
+				"Menguasai SQL dan satu bahasa pemrograman (Python/R)",
+				"Pengalaman dengan tools visualisasi data",
+				"Kemampuan memakai AI untuk otomasi (nilai plus)"
+			]
+		},
+		{
+			"id": "penulis-kebijakan",
+			"title": "Penulis Kebijakan (Policy Writer)",
+			"department": "Komunikasi",
+			"type": "Kontrak 6 bulan",
+			"location": "Hybrid · Jakarta",
+			"salary": "Rp 6–9 juta/bulan",
+			"deadline": "30 November 2026",
+			"summary": "Terjemahkan riset kebijakan menjadi tulisan yang mudah dipahami publik, media, dan pembuat keputusan.",
+			"responsibilities": [
+				"Menulis policy brief, artikel opini, dan materi publikasi",
+				"Menyederhanakan temuan riset untuk audiens non-teknis",
+				"Berkolaborasi dengan analis dan desainer",
+				"Mengelola kalender publikasi"
+			],
+			"requirements": [
+				"S1 komunikasi, jurnalistik, atau kebijakan publik",
+				"Portofolio tulisan (artikel, laporan, atau blog)",
+				"Kemampuan riset dan wawancara",
+				"Familiar dengan AI untuk drafting dan editing (nilai plus)"
+			]
+		},
+		{
+			"id": "magang-riset-kebijakan",
+			"title": "Magang Riset Kebijakan",
+			"department": "Riset",
+			"type": "Magang (3 bulan)",
+			"location": "Remote",
+			"salary": "Rp 2 juta/bulan (allowance)",
+			"deadline": "Terus dibuka",
+			"summary": "Program magang untuk mahasiswa akhir yang ingin belajar riset kebijakan sambil dibimbing analis senior.",
+			"responsibilities": [
+				"Membantu pengumpulan dan pengolahan data",
+				"Menyusun ringkasan literatur dan regulasi",
+				"Mendukung persiapan laporan dan presentasi",
+				"Belajar memakai AI untuk riset yang efisien"
+			],
+			"requirements": [
+				"Mahasiswa semester akhir (S1) bidang terkait",
+				"Minat kuat pada kebijakan publik",
+				"Mampu bekerja mandiri dan komunikatif",
+				"Bersedia komitmen 20 jam/minggu"
+			]
+		}
+	]
+};
+var company = jobs_default.company;
+var jobs = jobs_default.jobs;
+function getJob(id) {
+	return jobs.find((job) => job.id === id);
+}
+//#endregion
+export { company, getJob, jobs };

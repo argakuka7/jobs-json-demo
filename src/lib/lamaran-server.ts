@@ -39,3 +39,10 @@ export const submitLamaran = createServerFn({ method: 'POST' })
 export const getLamaran = createServerFn({ method: 'GET' }).handler(async () => {
   return readLamaran()
 })
+
+export const verifyAdmin = createServerFn({ method: 'POST' })
+  .validator((pw: string) => pw)
+  .handler(async ({ data }) => {
+    const expected = process.env.ADMIN_PASSWORD
+    return { ok: Boolean(expected) && data === expected }
+  })
