@@ -1,0 +1,4 @@
+[build]
+  command = "NITRO_PRESET=netlify pnpm run build"
+  publish = ".output/public"
+  functions = ".netlify/functions-internal"
