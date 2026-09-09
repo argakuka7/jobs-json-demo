@@ -2,7 +2,6 @@ import { createServerFn } from '@tanstack/react-start'
 
 export type Lamaran = {
   nama: string
-  email: string
   pesan: string
   jobId: string
   jobTitle: string

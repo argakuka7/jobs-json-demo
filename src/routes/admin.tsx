@@ -104,7 +104,6 @@ function Admin() {
               <thead className="border-b bg-secondary/50 text-xs uppercase tracking-wide text-muted-foreground">
                 <tr>
                   <th className="px-4 py-3 font-medium">Nama</th>
-                  <th className="px-4 py-3 font-medium">Email</th>
                   <th className="px-4 py-3 font-medium">Lowongan</th>
                   <th className="px-4 py-3 font-medium">Waktu</th>
                   <th className="px-4 py-3 font-medium">Pesan</th>
@@ -114,11 +113,6 @@ function Admin() {
                 {lamaran.map((item, i) => (
                   <tr key={i} className="align-top">
                     <td className="px-4 py-3 font-medium">{item.nama}</td>
-                    <td className="px-4 py-3">
-                      <a href={`mailto:${item.email}`} className="text-primary hover:underline">
-                        {item.email}
-                      </a>
-                    </td>
                     <td className="px-4 py-3">{item.jobTitle}</td>
                     <td className="px-4 py-3 whitespace-nowrap text-muted-foreground">
                       {new Date(item.waktu).toLocaleString('id-ID')}

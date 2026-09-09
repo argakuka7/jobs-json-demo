@@ -154,7 +154,7 @@ function Home() {
       <footer className="border-t">
         <div className="mx-auto flex max-w-5xl flex-col items-center gap-2 px-6 py-10 text-center text-sm text-muted-foreground">
           <p className="font-medium text-foreground">{company.name}</p>
-          <p>{company.location} · {company.email}</p>
+          <p>{company.location}</p>
           <p className="text-xs">© 2026 {company.name} — perusahaan fiktif untuk latihan kelas</p>
         </div>
       </footer>

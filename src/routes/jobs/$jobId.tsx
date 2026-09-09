@@ -18,7 +18,7 @@ function JobDetail() {
     throw notFound()
   }
 
-  const [form, setForm] = useState({ nama: '', email: '', pesan: '' })
+  const [form, setForm] = useState({ nama: '', pesan: '' })
   const [submitted, setSubmitted] = useState(false)
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
@@ -68,10 +68,7 @@ function JobDetail() {
         </div>
 
         <div className="mt-8 flex gap-3">
-          <a
-            href={`mailto:${company.email}?subject=Lamaran ${encodeURIComponent(job.title)}`}
-            className={buttonVariants({ size: 'lg' })}
-          >
+          <a href="#lamar" className={buttonVariants({ size: 'lg' })}>
             Lamar Sekarang
           </a>
           <a href="#tanggung-jawab" className={buttonVariants({ variant: 'outline', size: 'lg' })}>
@@ -103,7 +100,7 @@ function JobDetail() {
           </ul>
         </section>
 
-        <section className="mt-12 rounded-xl border bg-card p-6">
+        <section id="lamar" className="mt-12 rounded-xl border bg-card p-6">
           <h2 className="text-lg font-bold">Lamar Sekarang</h2>
           {submitted ? (
             <div className="mt-4 flex items-start gap-3 rounded-lg bg-emerald-50 p-4 text-sm text-emerald-800">
@@ -111,41 +108,24 @@ function JobDetail() {
               <div>
                 <p className="font-semibold">Lamaran terkirim!</p>
                 <p className="mt-1">
-                  Data tersimpan di browser kamu (localStorage). Tim kami akan
-                  menghubungi lewat email.
+                  Data tersimpan di server. Tim kami akan menghubungi kamu.
                 </p>
               </div>
             </div>
           ) : (
             <form onSubmit={handleSubmit} className="mt-4 grid gap-4">
-              <div className="grid gap-4 sm:grid-cols-2">
-                <div>
-                  <label htmlFor="nama" className="mb-1.5 block text-sm font-medium">
-                    Nama Lengkap
-                  </label>
-                  <input
-                    id="nama"
-                    required
-                    value={form.nama}
-                    onChange={(e) => setForm({ ...form, nama: e.target.value })}
-                    placeholder="Contoh: Siti Rahma"
-                    className="w-full rounded-md border border-input bg-background px-3 py-2 text-sm outline-none focus:border-ring focus:ring-3 focus:ring-ring/50"
-                  />
-                </div>
-                <div>
-                  <label htmlFor="email" className="mb-1.5 block text-sm font-medium">
-                    Email
-                  </label>
-                  <input
-                    id="email"
-                    type="email"
-                    required
-                    value={form.email}
-                    onChange={(e) => setForm({ ...form, email: e.target.value })}
-                    placeholder="kamu@email.com"
-                    className="w-full rounded-md border border-input bg-background px-3 py-2 text-sm outline-none focus:border-ring focus:ring-3 focus:ring-ring/50"
-                  />
-                </div>
+              <div>
+                <label htmlFor="nama" className="mb-1.5 block text-sm font-medium">
+                  Nama Lengkap
+                </label>
+                <input
+                  id="nama"
+                  required
+                  value={form.nama}
+                  onChange={(e) => setForm({ ...form, nama: e.target.value })}
+                  placeholder="Contoh: Siti Rahma"
+                  className="w-full rounded-md border border-input bg-background px-3 py-2 text-sm outline-none focus:border-ring focus:ring-3 focus:ring-ring/50"
+                />
               </div>
               <div>
                 <label htmlFor="pesan" className="mb-1.5 block text-sm font-medium">
