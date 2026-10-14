@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from '@tanstack/react-router'
-import { ArrowLeft } from 'lucide-react'
+import { ArrowLeft, ArrowRight } from 'lucide-react'
 
 import { buttonVariants } from '@/components/ui/button'
 
@@ -103,7 +103,10 @@ function Panduan() {
               lihat seluruh situs berganti nama rasanya.
             </p>
             <div className="mt-5 flex flex-wrap items-center gap-4">
-              <Link to="/" className={buttonVariants()}>
+              <Link to="/deploy" className={buttonVariants()}>
+                Panduan deploy enam langkah <ArrowRight className="ml-1.5 h-4 w-4" />
+              </Link>
+              <Link to="/" className={buttonVariants({ variant: 'outline' })}>
                 Lihat lagi arsip lowongannya
               </Link>
               <span className="stamp">Nol baris kode</span>
