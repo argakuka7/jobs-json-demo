@@ -20,7 +20,7 @@ function Home() {
             </span>
             <span className="font-semibold">{company.name}</span>
           </Link>
-          <nav className="hidden gap-6 text-sm text-cream-dim sm:flex">
+          <nav className="flex flex-wrap gap-x-4 gap-y-1 text-xs text-cream-dim sm:gap-6 sm:text-sm">
             <a href="#lowongan" className="hover:text-foreground">Lowongan</a>
             <a href="#tentang" className="hover:text-foreground">Tentang</a>
             <a href="#proses" className="hover:text-foreground">Proses</a>

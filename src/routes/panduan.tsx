@@ -102,9 +102,12 @@ function Panduan() {
               alurnya. Setelah itu coba ganti warna tinta kobal di tema dan
               lihat seluruh situs berganti nama rasanya.
             </p>
-            <Link to="/" className={`${buttonVariants()} mt-5`}>
-              Lihat lagi arsip lowongannya
-            </Link>
+            <div className="mt-5 flex flex-wrap items-center gap-4">
+              <Link to="/" className={buttonVariants()}>
+                Lihat lagi arsip lowongannya
+              </Link>
+              <span className="stamp">Nol baris kode</span>
+            </div>
           </div>
         </section>
       </main>
