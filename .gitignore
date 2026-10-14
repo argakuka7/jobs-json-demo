@@ -15,3 +15,9 @@ count.txt
 todos.json
 .netlify
 ADMIN_PASSWORD.txt
+
+# data lamaran mode belajar
+.data/
+
+# build output deploy
+.vercel/

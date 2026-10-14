@@ -1,79 +1,85 @@
-# Tanstack Start Starter
+# JobsJSON Demo — Situs Lowongan untuk Latihan Kelas
 
-**Full-stack React apps with type-safe routing and zero boilerplate.**
+Template pembelajaran berupa situs lowongan dan lamaran kerja untuk
+perusahaan fiktif **Nusantara Policy Lab**. Dibuat agar mahasiswa bisa
+mengambil alih proyek sungguhan: mengubah tampilan, mengubah data,
+lalu men-deploy-nya sendiri ke internet.
 
-[![TanStack Start](https://img.shields.io/badge/TanStack_Start-1.x-blue?logo=react)](https://tanstack.com/start)
-[![TypeScript](https://img.shields.io/badge/TypeScript-Strict-blue?logo=typescript)](https://www.typescriptlang.org/)
-[![Uses pnpm](https://img.shields.io/badge/pnpm-12.x-orange?logo=pnpm)](https://pnpm.io/)
+Tema visualnya disebut **Kartu Arsip**: halaman berupa alas felt hijau,
+semua isi berupa kartu krem bergaris seperti kartu indeks, aksi dan
+status memakai tinta kobal. Seluruh tema hidup di satu file, jadi ganti
+rasa situs cukup dari satu tempat.
 
-## What's included
+> Panduan langkah demi langkah untuk mahasiswa ada di halaman `/panduan`
+> di dalam situs ini.
 
-- **[TanStack Start](https://tanstack.com/start)** — full-stack React meta-framework with type-safe routing and server functions
-- **[TanStack Query](https://tanstack.com/query)** — server-state management, SSR-integrated with the router
-- **[Tailwind CSS v4](https://tailwindcss.com/) + [shadcn/ui](https://ui.shadcn.com/)** — utility-first styling with accessible component primitives
-- **React 19** — latest React with TanStack Query and Router devtools
-- **Strict TypeScript, Oxfmt, Oxlint** — fast DX with import, package, and Tailwind class sorting
-- **[Claude Code](https://claude.ai/code) skills** — AI-assisted development with context-aware guidance
+## Teknologi
 
-## Prerequisites
+| Lapisan    | Teknologi                                    |
+| ---------- | -------------------------------------------- |
+| Framework  | [TanStack Start](https://tanstack.com/start) (React 19 + Vite) |
+| Routing    | TanStack Router (file-based, type-safe)      |
+| Data       | TanStack Query + `data/jobs.json`            |
+| Styling    | Tailwind CSS v4 + komponen ala shadcn/ui     |
+| Simpan     | Upstash Redis (produksi) atau file `.data/` (latihan) |
 
-- Node.js matching `.node-version`, currently `lts/Krypton`
-- pnpm 12.3.4, pinned via `packageManager` in `package.json`
-
-## Quick start
+## Mulai cepat
 
 ```bash
-npx degit AdiRishi/tanstack-start-starter my-app
-cd my-app
-cp .env.example .env.local
 pnpm install
 pnpm dev
 ```
 
-The app runs at `http://localhost:8080`.
+Buka `http://localhost:8080`. Tanpa setup apa pun situs sudah jalan:
+lamaran tersimpan di `.data/lamaran.json` (di-gitignore).
 
-Keep local environment values in `.env.local`, which Git ignores. Add variable names and safe placeholders to `.env.example`. Variables prefixed with `VITE_` are public and must not contain secrets.
+Untuk mode penuh, salin `.env.example` jadi `.env.local` lalu isi:
 
-## Tech stack
-
-| Layer     | Technology                              |
-| --------- | --------------------------------------- |
-| Framework | TanStack Start (React 19 + Vite)        |
-| Routing   | TanStack Router (type-safe, file-based) |
-| Data      | TanStack Query (SSR-integrated)         |
-| Styling   | Tailwind CSS v4 + shadcn/ui             |
-| Testing   | Vitest + Testing Library                |
-| Language  | TypeScript (strict)                     |
-
-## Project structure
-
-```
-src/
-  routes/                     → File-based routes (TanStack Router)
-  components/ui/              → shadcn/ui primitives (button, input, label)
-  lib/
-    app-provider.tsx          → App-wide provider wrapper (extension point)
-  global-styles/tailwind.css  → Theme tokens — edit this to customize your app
+```bash
+cp .env.example .env.local
 ```
 
-## Scripts
+| Variabel                  | Fungsi                                          |
+| ------------------------- | ----------------------------------------------- |
+| `UPSTASH_REDIS_REST_URL`  | Opsional. Kosongkan saat latihan.               |
+| `UPSTASH_REDIS_REST_TOKEN`| Opsional. Pasangannya dengan URL di atas.       |
+| `ADMIN_PASSWORD`          | Password `/admin`. Bawaan `kelas2026` — ganti!  |
 
-| Command          | Description                 |
-| ---------------- | --------------------------- |
-| `pnpm dev`       | Vite dev server             |
-| `pnpm build`     | Production build            |
-| `pnpm test`      | Run tests                   |
-| `pnpm typecheck` | Type check with tsc         |
-| `pnpm check`     | Format + lint with auto-fix |
+## Mau mengubah apa? Buka file ini.
 
-## Testing
+| File                                | Isinya                                              |
+| ----------------------------------- | --------------------------------------------------- |
+| `data/jobs.json`                    | Perusahaan, daftar lowongan, soal tugas analisis.   |
+| `src/global-styles/tailwind.css`    | **Tema**: warna felt, kartu, tinta kobal, huruf.    |
+| `src/routes/index.tsx`              | Beranda: hero, daftar lowongan, tentang, proses.    |
+| `src/routes/jobs/$jobId.tsx`        | Halaman satu lowongan.                              |
+| `src/routes/apply.$jobId.tsx`       | Form lamaran bertahap.                              |
+| `src/routes/admin.tsx`              | Lemari lamaran (khusus pengajar).                   |
+| `src/routes/panduan.tsx`            | Halaman panduan mahasiswa.                          |
+| `src/lib/lamaran-server.ts`         | Penyimpanan lamaran (dua mode).                     |
 
-Frontend tests use Vitest, jsdom, React Testing Library, jest-dom matchers, and user-event.
+Coba dulu: tambahkan satu lowongan baru di `jobs.json` tanpa menyentuh
+kode. Kalau kartunya muncul sendiri di beranda, kamu sudah paham alurnya.
 
-## Resources
+## Deploy
 
-- [TanStack Start docs](https://tanstack.com/start)
-- [TanStack Router](https://tanstack.com/router)
-- [TanStack Query](https://tanstack.com/query)
-- [Tailwind CSS v4](https://tailwindcss.com/)
-- [shadcn/ui](https://ui.shadcn.com/)
+1. Push repo ini ke GitHub-mu.
+2. Hubungkan ke Vercel atau Netlify, ikuti default-nya.
+3. Isi tiga variabel env di atas di dasbor hosting. **Ganti
+   `ADMIN_PASSWORD`** sebelum situs dipakai sungguhan.
+4. Bersihkan: hapus repo lama dan README lama bila ada, supaya hanya ada
+   satu sumber kebenaran.
+
+## Perintah
+
+```bash
+pnpm dev         # jalan lokal di :8080
+pnpm typecheck   # cek tipe
+pnpm lint        # oxlint
+pnpm test        # vitest
+```
+
+## Kredit
+
+Dibangun di atas [tanstack-start-starter](https://github.com/AdiRishi/tanstack-start-starter).
+Terima kasih untuk templatnya.
