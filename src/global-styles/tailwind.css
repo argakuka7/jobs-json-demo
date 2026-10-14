@@ -3,92 +3,50 @@
 @import 'shadcn/tailwind.css';
 @import '@fontsource-variable/inter';
 
-@custom-variant dark (&:is(.dark *));
+/* ============================================================
+   TEMA — "Kartu Arsip"
+   Halaman = alas felt hijau. Semua isi = kartu krem.
+   Aksi & status = tinta kobal. Tiga peran huruf:
+   Inter (isi), Georgia (judul), Courier (label & stempel).
+   Ubah warna di bawah ini, seluruh situs ikut berubah.
+   ============================================================ */
 
 :root {
-    --background: oklch(1 0 0);
-    --foreground: oklch(0.145 0 0);
-    --card: oklch(1 0 0);
-    --card-foreground: oklch(0.145 0 0);
-    --popover: oklch(1 0 0);
-    --popover-foreground: oklch(0.145 0 0);
-    --primary: oklch(0.205 0 0);
-    --primary-foreground: oklch(0.985 0 0);
-    --secondary: oklch(0.97 0 0);
-    --secondary-foreground: oklch(0.205 0 0);
-    --muted: oklch(0.97 0 0);
-    --muted-foreground: oklch(0.556 0 0);
-    --accent: oklch(0.97 0 0);
-    --accent-foreground: oklch(0.205 0 0);
-    --destructive: oklch(0.58 0.22 27);
-    --border: oklch(0.922 0 0);
-    --input: oklch(0.922 0 0);
-    --ring: oklch(0.708 0 0);
-    --chart-1: oklch(0.809 0.105 251.813);
-    --chart-2: oklch(0.623 0.214 259.815);
-    --chart-3: oklch(0.546 0.245 262.881);
-    --chart-4: oklch(0.488 0.243 264.376);
-    --chart-5: oklch(0.424 0.199 265.638);
-    --radius: 0.625rem;
-    --sidebar: oklch(0.985 0 0);
-    --sidebar-foreground: oklch(0.145 0 0);
-    --sidebar-primary: oklch(0.205 0 0);
-    --sidebar-primary-foreground: oklch(0.985 0 0);
-    --sidebar-accent: oklch(0.97 0 0);
-    --sidebar-accent-foreground: oklch(0.205 0 0);
-    --sidebar-border: oklch(0.922 0 0);
-    --sidebar-ring: oklch(0.708 0 0);
-}
-
-.dark {
-    --background: oklch(0.145 0 0);
-    --foreground: oklch(0.985 0 0);
-    --card: oklch(0.205 0 0);
-    --card-foreground: oklch(0.985 0 0);
-    --popover: oklch(0.205 0 0);
-    --popover-foreground: oklch(0.985 0 0);
-    --primary: oklch(0.87 0 0);
-    --primary-foreground: oklch(0.205 0 0);
-    --secondary: oklch(0.269 0 0);
-    --secondary-foreground: oklch(0.985 0 0);
-    --muted: oklch(0.269 0 0);
-    --muted-foreground: oklch(0.708 0 0);
-    --accent: oklch(0.371 0 0);
-    --accent-foreground: oklch(0.985 0 0);
-    --destructive: oklch(0.704 0.191 22.216);
-    --border: oklch(1 0 0 / 10%);
-    --input: oklch(1 0 0 / 15%);
-    --ring: oklch(0.556 0 0);
-    --chart-1: oklch(0.809 0.105 251.813);
-    --chart-2: oklch(0.623 0.214 259.815);
-    --chart-3: oklch(0.546 0.245 262.881);
-    --chart-4: oklch(0.488 0.243 264.376);
-    --chart-5: oklch(0.424 0.199 265.638);
-    --sidebar: oklch(0.205 0 0);
-    --sidebar-foreground: oklch(0.985 0 0);
-    --sidebar-primary: oklch(0.488 0.243 264.376);
-    --sidebar-primary-foreground: oklch(0.985 0 0);
-    --sidebar-accent: oklch(0.269 0 0);
-    --sidebar-accent-foreground: oklch(0.985 0 0);
-    --sidebar-border: oklch(1 0 0 / 10%);
-    --sidebar-ring: oklch(0.556 0 0);
+    --background: #2e3b33;
+    --foreground: #fbf6ea;
+    --card: #fbf6ea;
+    --card-foreground: #33393f;
+    --popover: #fffdf6;
+    --popover-foreground: #33393f;
+    --primary: #2b4acb;
+    --primary-foreground: #fbf6ea;
+    --secondary: #efe7d2;
+    --secondary-foreground: #33393f;
+    --muted: #e9e1cc;
+    --muted-foreground: #a8b2a5;
+    --accent: #efe7d2;
+    --accent-foreground: #33393f;
+    --destructive: #b23a2e;
+    --border: rgb(251 246 234 / 0.16);
+    --input: rgb(51 57 63 / 0.25);
+    --ring: #2b4acb;
+    --radius: 0.375rem;
 }
 
 @theme inline {
     --font-sans: 'Inter Variable', sans-serif;
-    --color-sidebar-ring: var(--sidebar-ring);
-    --color-sidebar-border: var(--sidebar-border);
-    --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
-    --color-sidebar-accent: var(--sidebar-accent);
-    --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
-    --color-sidebar-primary: var(--sidebar-primary);
-    --color-sidebar-foreground: var(--sidebar-foreground);
-    --color-sidebar: var(--sidebar);
-    --color-chart-5: var(--chart-5);
-    --color-chart-4: var(--chart-4);
-    --color-chart-3: var(--chart-3);
-    --color-chart-2: var(--chart-2);
-    --color-chart-1: var(--chart-1);
+    --font-serif: Georgia, 'Times New Roman', serif;
+    --font-mono: 'Courier New', Courier, monospace;
+
+    /* Warna tambahan: tinta untuk di atas kartu, krem untuk di atas felt */
+    --color-ink: #33393f;
+    --color-ink-muted: #6e6a5e;
+    --color-cream: #fbf6ea;
+    --color-cream-dim: rgb(251 246 234 / 0.65);
+    --color-cobalt: #2b4acb;
+    --color-cobalt-deep: #1e3699;
+    --color-field: #fffdf6;
+
     --color-ring: var(--ring);
     --color-input: var(--input);
     --color-border: var(--border);
@@ -107,9 +65,9 @@
     --color-card: var(--card);
     --color-foreground: var(--foreground);
     --color-background: var(--background);
-    --radius-sm: calc(var(--radius) - 4px);
-    --radius-md: calc(var(--radius) - 2px);
-    --radius-lg: var(--radius);
+    --radius-sm: calc(var(--radius) - 2px);
+    --radius-md: var(--radius);
+    --radius-lg: calc(var(--radius) + 2px);
     --radius-xl: calc(var(--radius) + 4px);
     --radius-2xl: calc(var(--radius) + 8px);
     --radius-3xl: calc(var(--radius) + 12px);
@@ -122,8 +80,104 @@
     }
     body {
         @apply bg-background font-sans text-foreground;
+        background-image: radial-gradient(1200px 600px at 50% -10%, rgb(255 255 255 / 0.05), transparent 60%);
     }
     html {
         @apply font-sans;
     }
+}
+
+@layer components {
+    /* Kartu arsip: permukaan krem dengan bayangan lembut */
+    .arch-card {
+        @apply bg-card text-card-foreground;
+        border: 1px solid rgb(51 57 63 / 0.12);
+        border-radius: 6px 10px 10px 6px;
+        box-shadow:
+            0 1px 0 rgb(255 255 255 / 0.25) inset,
+            0 14px 32px rgb(0 0 0 / 0.35);
+    }
+
+    /* Garis-garis khas kartu indeks; atur titik mulai dengan --rule-offset */
+    .arch-ruled {
+        --rule-offset: 0px;
+        background-image: repeating-linear-gradient(
+            to bottom,
+            transparent 0,
+            transparent 31px,
+            rgb(43 74 203 / 0.12) 31px,
+            rgb(43 74 203 / 0.12) 32px
+        );
+        background-position: 0 var(--rule-offset);
+    }
+
+    /* Stempel status, miring ala cap kantor */
+    .stamp {
+        @apply inline-block font-mono font-bold uppercase;
+        color: var(--primary);
+        border: 2.5px solid var(--primary);
+        border-radius: 4px;
+        padding: 3px 12px;
+        font-size: 0.72rem;
+        letter-spacing: 0.2em;
+        transform: rotate(-3deg);
+        mix-blend-mode: multiply;
+        -webkit-mask-image: radial-gradient(3px 3px at 20% 30%, transparent 40%, black 60%);
+        mask-image: radial-gradient(3px 3px at 20% 30%, transparent 40%, black 60%);
+    }
+
+    /* Label kecil bergaya mesin tik untuk nama bidang / nomor seri */
+    .eyebrow {
+        @apply font-mono text-xs font-bold uppercase;
+        color: var(--color-cobalt-deep);
+        letter-spacing: 0.16em;
+    }
+
+    /* Input di atas kartu krem */
+    .field-input {
+        @apply w-full rounded-md border px-3 py-2 text-sm outline-none transition-colors;
+        background: var(--color-field);
+        border-color: rgb(51 57 63 / 0.25);
+        color: var(--color-ink);
+    }
+    .field-input:focus {
+        border-color: var(--primary);
+        box-shadow: 0 0 0 3px rgb(43 74 203 / 0.25);
+    }
+    .field-input::placeholder {
+        color: rgb(51 57 63 / 0.4);
+    }
+
+    /* Bagian bawah layar masuk pelan saat mulai terlihat (tanpa JS) */
+    .reveal {
+        animation: arch-enter linear both;
+        animation-timeline: view();
+        animation-range: entry 0% entry 45%;
+    }
+}
+
+@keyframes arch-enter {
+    from {
+        opacity: 0;
+        transform: translateY(18px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Kartu yang muncul seketika saat halaman dibuka */
+@keyframes arch-pop {
+    from {
+        opacity: 0;
+        transform: translateY(10px) rotate(-0.5deg);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) rotate(0deg);
+    }
+}
+.arch-pop {
+    animation: arch-pop 0.5s cubic-bezier(0.2, 0.7, 0.2, 1) both;
 }

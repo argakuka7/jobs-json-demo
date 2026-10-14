@@ -1,5 +1,5 @@
 import { createFileRoute, Link, notFound } from '@tanstack/react-router'
-import { ArrowLeft, ArrowRight, CheckCircle2 } from 'lucide-react'
+import { ArrowLeft, ArrowRight } from 'lucide-react'
 import { useState } from 'react'
 
 import { buttonVariants } from '@/components/ui/button'
@@ -52,15 +52,15 @@ function Apply() {
 
   if (submitted) {
     return (
-      <div className="flex min-h-screen items-center justify-center bg-secondary/30 px-6">
-        <div className="w-full max-w-lg rounded-xl border bg-card p-8 text-center shadow-sm">
-          <CheckCircle2 className="mx-auto h-12 w-12 text-emerald-600" />
-          <h1 className="mt-4 text-2xl font-bold">Lamaran terkirim!</h1>
-          <p className="mt-2 text-muted-foreground">
-            Jawaban tugas analisismu sudah kami terima. Tim {company.name} akan
-            menghubungi kamu.
+      <div className="flex min-h-screen items-center justify-center px-6">
+        <div className="arch-card arch-pop w-full max-w-lg p-9 text-center">
+          <span className="stamp text-sm">Lamaran tercatat</span>
+          <h1 className="mt-5 font-serif text-3xl">Sudah masuk arsip.</h1>
+          <p className="mt-3 text-sm leading-relaxed text-ink-muted">
+            Jawaban tugas analisismu kami simpan di berkas lamaran. Tim
+            {` ${company.name}`} akan menghubungi kamu lewat email.
           </p>
-          <Link to="/" className={`${buttonVariants()} mt-6`}>
+          <Link to="/" className={`${buttonVariants()} mt-7`}>
             Kembali ke Beranda
           </Link>
         </div>
@@ -71,46 +71,49 @@ function Apply() {
   const soal = step > 0 ? job.assessment?.[step - 1] : null
 
   return (
-    <div className="min-h-screen bg-secondary/30">
-      <header className="border-b bg-background">
+    <div className="min-h-screen">
+      <header className="border-b border-border">
         <div className="mx-auto flex max-w-2xl items-center justify-between px-6 py-4">
           <Link
             to="/jobs/$jobId"
             params={{ jobId: job.id }}
-            className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground"
+            className="inline-flex items-center gap-2 text-sm text-cream-dim hover:text-foreground"
           >
             <ArrowLeft className="h-4 w-4" /> Batal
           </Link>
-          <span className="text-sm font-semibold">{company.name}</span>
+          <span className="font-mono text-xs uppercase tracking-[0.14em] text-cream-dim">
+            {company.name}
+          </span>
         </div>
       </header>
 
-      <main className="mx-auto max-w-2xl px-6 py-8">
+      <main className="mx-auto max-w-2xl px-6 py-10">
         {/* ===== PROGRESS ===== */}
         <div className="mb-6">
-          <p className="text-sm text-muted-foreground">
-            Langkah {step + 1} dari {totalSteps}
+          <p className="font-mono text-xs font-bold uppercase tracking-[0.16em] text-cream-dim">
+            Berkas lamaran — langkah {step + 1} dari {totalSteps}
           </p>
-          <div className="mt-2 h-1.5 w-full overflow-hidden rounded-full bg-muted">
+          <div className="mt-3 h-1.5 w-full overflow-hidden rounded-full bg-cream/15">
             <div
-              className="h-full rounded-full bg-primary transition-all"
+              className="h-full rounded-full bg-primary transition-all duration-300"
               style={{ width: `${((step + 1) / totalSteps) * 100}%` }}
             />
           </div>
         </div>
 
         {/* ===== KARTU ===== */}
-        <div className="rounded-xl border bg-card p-6 shadow-sm sm:p-8">
+        <div key={step} className="arch-card arch-pop p-6 sm:p-8">
           {step === 0 ? (
-            <div className="space-y-5">
+            <div className="space-y-6">
               <div>
-                <h1 className="text-xl font-bold">Lamaran — {job.title}</h1>
-                <p className="mt-1 text-sm text-muted-foreground">
+                <span className="eyebrow">Formulir utama</span>
+                <h1 className="mt-2 font-serif text-2xl">Lamaran — {job.title}</h1>
+                <p className="mt-1.5 text-sm text-ink-muted">
                   Mulai dengan data diri singkat.
                 </p>
               </div>
               <div>
-                <label htmlFor="nama" className="mb-1.5 block text-sm font-medium">
+                <label htmlFor="nama" className="eyebrow mb-2 block">
                   Nama Lengkap
                 </label>
                 <input
@@ -119,11 +122,11 @@ function Apply() {
                   value={form.nama}
                   onChange={(e) => setForm({ ...form, nama: e.target.value })}
                   placeholder="Contoh: Siti Rahma"
-                  className="w-full rounded-md border border-input bg-background px-3 py-2 text-sm outline-none focus:border-ring focus:ring-3 focus:ring-ring/50"
+                  className="field-input"
                 />
               </div>
               <div>
-                <label htmlFor="pesan" className="mb-1.5 block text-sm font-medium">
+                <label htmlFor="pesan" className="eyebrow mb-2 block">
                   Kenapa kamu cocok?
                 </label>
                 <textarea
@@ -133,18 +136,18 @@ function Apply() {
                   value={form.pesan}
                   onChange={(e) => setForm({ ...form, pesan: e.target.value })}
                   placeholder="Ceritakan singkat pengalaman dan ketertarikanmu di kebijakan publik..."
-                  className="w-full rounded-md border border-input bg-background px-3 py-2 text-sm outline-none focus:border-ring focus:ring-3 focus:ring-ring/50"
+                  className="field-input resize-y"
                 />
               </div>
             </div>
           ) : (
-            <div className="space-y-4">
-              <span className="inline-flex rounded-full bg-secondary px-3 py-1 text-xs font-medium text-secondary-foreground">
-                Tugas Analisis · {soal?.kompetensi}
-              </span>
-              <h1 className="text-xl font-bold">Soal {step}</h1>
-              <p className="text-foreground">{soal?.pertanyaan}</p>
-              <p className="text-xs text-muted-foreground">Maksimal {soal?.maks_kata} kata</p>
+            <div className="space-y-5">
+              <span className="eyebrow">Tugas Analisis · {soal?.kompetensi}</span>
+              <h1 className="font-serif text-2xl">Soal {step}</h1>
+              <p className="leading-relaxed text-ink">{soal?.pertanyaan}</p>
+              <p className="font-mono text-xs text-ink-muted">
+                Maksimal {soal?.maks_kata} kata
+              </p>
               <textarea
                 id={`jawaban-${step - 1}`}
                 rows={8}
@@ -153,13 +156,13 @@ function Apply() {
                 onChange={(e) =>
                   setJawaban((prev) => ({ ...prev, [String(step - 1)]: e.target.value }))
                 }
-                className="w-full rounded-md border border-input bg-background px-3 py-2 text-sm outline-none focus:border-ring focus:ring-3 focus:ring-ring/50"
+                className="field-input resize-y"
               />
             </div>
           )}
 
           {/* ===== NAV ===== */}
-          <div className="mt-6 flex items-center justify-between border-t pt-4">
+          <div className="mt-7 flex items-center justify-between border-t border-ink/10 pt-5">
             <button
               type="button"
               onClick={prev}
@@ -175,7 +178,7 @@ function Apply() {
                 disabled={!canNext}
                 className={buttonVariants()}
               >
-                Kirim Lamaran
+                Kirim & cap berkasnya
               </button>
             ) : (
               <button
@@ -184,7 +187,7 @@ function Apply() {
                 disabled={!canNext}
                 className={buttonVariants()}
               >
-                Berikutnya <ArrowRight className="ml-2 h-4 w-4" />
+                Berikutnya <ArrowRight className="ml-1.5 h-4 w-4" />
               </button>
             )}
           </div>
